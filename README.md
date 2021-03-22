@@ -1,5 +1,9 @@
-#Matopeli
+#Ohjelmistotekniikka, harjoitustyö
 
-nostalginen
-*klassikko*
-**hyvä peli**
+##Tehtävät
+
+###Viikko 1
+
+[gitlog.txt](https://github.com/hctarkia/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
+[komentorivi.txt](https://github.com/hctarkia/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
