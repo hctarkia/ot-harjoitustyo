@@ -1,5 +1,11 @@
 # Ohjelmistotekniikka, harjoitustyö
 
+## Dokumentaatio
+
+[Vaatimusmäärittely](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[Tuntikirjanpito](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
 ## Tehtävät
 
 ### Viikko 1
@@ -10,8 +16,4 @@
 
 ### Viikko 2
 
-[vaatimusmaarittely.md](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-
 [testikattavuus_screenshot.png](https://github.com/hctarkia/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus_screenshot.png)
-
-[tuntikirjanpito.md](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
