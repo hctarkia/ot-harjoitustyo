@@ -13,3 +13,5 @@
 [vaatimusmaarittely.md](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [testikattavuus_screenshot.png](https://github.com/hctarkia/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus_screenshot.png)
+
+[tuntikirjanpito.md](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
