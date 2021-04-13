@@ -1,12 +1,12 @@
 package snake.snake;
 
-public class Points {
+public class Score {
     private String name;
-    private int points;
+    private int score;
     
-    public Points(String name, int points) {
+    public Score (String name, int score) {
         this.name = name;
-        this.points = points;
+        this.score = score;
     }
     
     public String getName() {
@@ -14,10 +14,10 @@ public class Points {
     }
     
     public int getPoints() {
-        return this.points;
+        return this.score;
     }
     
     public String toString() {
-        return this.name + ";" + this.points;
+        return this.name + ":" + this.score;
     }
 }

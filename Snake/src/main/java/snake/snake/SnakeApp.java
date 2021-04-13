@@ -13,12 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.HashMap;
 
 public class SnakeApp extends Application {
     
-    public static int WIDTH = 1200;
-    public static int HEIGHT = 800;
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
     
     public static void main(String[] args) {
         launch(args);
@@ -29,12 +28,14 @@ public class SnakeApp extends Application {
         BorderPane start = new BorderPane();
         VBox buttons = new VBox();
         buttons.setAlignment(Pos.CENTER);
+        Text text = new Text("Matopeli");
+        text.setFont(new Font(50));
         Button play = new Button("Aloita peli");
         Button highscore = new Button("Sijoitukset");
         play.setFont(Font.font(30));
         highscore.setFont(Font.font(30));
-        buttons.getChildren().addAll(play,highscore);
-        buttons.setSpacing(20);
+        buttons.getChildren().addAll(text,play,highscore);
+        buttons.setSpacing(30);
         
         start.setPrefSize(WIDTH, HEIGHT);
         start.setCenter(buttons);
@@ -51,22 +52,21 @@ public class SnakeApp extends Application {
     }
     
     public void gameplay(Stage stage, Scene front) {
-        Pane screen = new Pane();
-        Text text = new Text(30,40,"Pisteet: 0");
-        text.setFont(new Font(40));
-        screen.setPrefSize(WIDTH, HEIGHT);
-        screen.getChildren().add(text);
-        AtomicInteger pisteet = new AtomicInteger();
+        BorderPane gpLayout = new BorderPane();
+        Pane gpScreen = new Pane();
+        Text text = new Text("Pisteet: 0");
+        text.setFont(new Font(20));
+        gpScreen.setPrefSize(WIDTH, HEIGHT-20);
+        gpLayout.setTop(text);
+        gpLayout.setCenter(gpScreen);
+        AtomicInteger score = new AtomicInteger();
         
-        Scene scene = new Scene(screen);
+        Snake snake = new Snake(WIDTH/2, HEIGHT/2-10);
+        gpScreen.getChildren().add(snake.getSnake());
+        Food food = new Food();
+        gpScreen.getChildren().add(food.getFood());
         
-        HashMap<KeyCode,Boolean> pressed = new HashMap<>();
-        scene.setOnKeyPressed(event -> {
-            pressed.put(event.getCode(),Boolean.TRUE);
-        });
-        scene.setOnKeyReleased(event -> {
-            pressed.put(event.getCode(),Boolean.FALSE);
-        });
+        Scene scene = new Scene(gpLayout);
         
         stage.setScene(scene);
     }
