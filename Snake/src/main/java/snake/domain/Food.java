@@ -1,5 +1,6 @@
-package snake.snake;
+package snake.domain;
 
+import snake.ui.SnakeUi;
 import javafx.scene.shape.Circle;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Food {
     
     public void eaten() {
         Random rnd = new Random();
-        this.food.setTranslateX(rnd.nextInt(SnakeApp.WIDTH));
-        this.food.setTranslateY(rnd.nextInt(SnakeApp.HEIGHT));
+        this.food.setTranslateX(rnd.nextInt(SnakeUi.WIDTH));
+        this.food.setTranslateY(rnd.nextInt(SnakeUi.HEIGHT));
     }
 }

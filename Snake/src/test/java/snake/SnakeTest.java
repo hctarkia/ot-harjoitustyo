@@ -6,19 +6,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import snake.domain.Food;
+import snake.domain.Snake;
 
-public class FoodTest {
+public class SnakeTest {
     
-    Food food;
+    Snake snake;
     
     @Before
     public void setUp() {
-        food = new Food();
+        snake = new Snake(0, 0);
     }
     
     @Test
-    public void createsCorrectSizedFood() {
-        assertTrue(food.getFood().getRadius()==5);
+    public void createsCorrectSizedSnake() {
+        assertTrue(snake.getSnake().size() == 3);
     }
 }

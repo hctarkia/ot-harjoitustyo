@@ -1,4 +1,6 @@
-package snake.snake;
+package snake.dao;
+
+
 
 public class Highscores {
     

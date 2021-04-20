@@ -1,7 +1,7 @@
-package snake.snake;
+package snake.ui;
 
 public class Main {
     public static void main(String[] args) {
-        SnakeApp.main(args);
+        SnakeUi.main(args);
     }
 }
