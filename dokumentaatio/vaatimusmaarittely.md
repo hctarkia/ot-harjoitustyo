@@ -15,9 +15,9 @@ Pelin päätyttyä aukeaa näkymä, jossa näkee oman tuloksensa ja voi palata p
 
 ## Perusversion tarjoama toiminnallisuus
 
-- käyttäjä ohjaa matoa nuolinäppäimillä
-- kun madolla syödään ruokaa, mato kasvaa pituutta
-- kun mato törmää seinään tai itseensä, peli päättyy
+- käyttäjä ohjaa matoa nuolinäppäimillä (tehty)
+- kun madolla syödään ruokaa, mato kasvaa pituutta (tehty)
+- kun mato törmää seinään tai itseensä, peli päättyy (tehty)
 - käyttäjä voi tallentaa tuloksensa ennätyslistaan
 - käyttäjä voi tarkastella pelissä tehtyjä ennätyksiä
 

@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import snake.domain.Snake;
+import snake.domain.Point;
 
 public class SnakeTest {
     
@@ -26,4 +27,17 @@ public class SnakeTest {
     public void createsFood() {
         assertFalse(snake.getFood() == null);
     }
+    
+    @Test
+    public void eatingReturnsTrue() {
+        assertTrue(snake.eat(snake.getFood()));
+    }
+    
+    @Test
+    public void eatingCreatesNewFood() {
+        Point oldFood = snake.getFood();
+        snake.eat(snake.getFood());
+        assertFalse(snake.getFood() == oldFood);
+    }
+    
 }

@@ -8,6 +8,6 @@
 | 13.4. | 4 | säätöä, luokkia alkuun ja yksi testi luokalle Food |
 | 20.4. | 5 | checkstyle käyttöön, pakkausrakenne kuntoon ja säätöä madon liikkeen kanssa |
 | 26.4. | 3 | uusi lähestymistapa pelin luontiin eli kenttä vaihtui panesta canvasiin |
+| 27.4. | 3 | mato liikkuu, matoa voi ohjata, mato voi kuolla ja syödä |
 
-
-Aikaa käytetty yhteensä 17 tuntia.
+Aikaa käytetty yhteensä 20 tuntia.
