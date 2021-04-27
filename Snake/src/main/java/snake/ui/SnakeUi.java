@@ -12,15 +12,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import java.util.concurrent.atomic.AtomicInteger;
-import javafx.scene.layout.Pane;
-import snake.domain.Food;
 import snake.domain.Snake;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.Group;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class SnakeUi extends Application {
     
     public static int WIDTH = 400;
     public static int HEIGHT = 400;
+    public static int direction = 0;
     
     public static void main(String[] args) {
         launch(args);
@@ -56,28 +58,73 @@ public class SnakeUi extends Application {
     
     public void gameplay(Stage stage, Scene front) {
         BorderPane gpLayout = new BorderPane();
-        Pane field = new Pane();
-        field.setPrefSize(WIDTH, HEIGHT);
+        Canvas field = new Canvas(WIDTH, HEIGHT);
+        Group root = new Group();
+        root.getChildren().add(field);
         Text text = new Text("Pisteet: 0");
         text.setFont(new Font(20));
         gpLayout.setTop(text);
         gpLayout.setCenter(field);
         AtomicInteger score = new AtomicInteger();
         
-        Snake snake = new Snake(WIDTH/2, HEIGHT/2);
-        for(int i = 0; i < snake.getSnake().size(); i++) {
-            field.getChildren().add(snake.getSnake().get(i));
-        }
-        Food food = new Food();
-        field.getChildren().add(food.getFood());
+        Snake snake = new Snake(WIDTH, HEIGHT);
         
         Scene scene = new Scene(gpLayout);
         
+        GraphicsContext fill = field.getGraphicsContext2D();
+        
+        scene.setOnKeyPressed((event -> {
+            if (event.getCode() == KeyCode.LEFT) {
+                if (direction != 2) {
+                    direction = 0;
+                }
+            }
+            if (event.getCode() == KeyCode.UP) {
+                if (direction != 3) {
+                    direction = 1;
+                }
+            }
+            if (event.getCode() == KeyCode.RIGHT) {
+                if (direction != 0) {
+                    direction = 2;
+                }
+            }
+            if (event.getCode() == KeyCode.DOWN) {
+                if (direction != 1) {
+                    direction = 3;
+                }
+            }
+        }));
+        
         new AnimationTimer() {
             
+            private long sleepNanoseconds = 100000000;
+            private long prevTime = 0;
+            
             @Override
-            public void handle(long now) {
-                snake.move();
+            public void handle(long currentNanoTime) {
+                if ((currentNanoTime - prevTime) < sleepNanoseconds) {
+                    return;
+                }
+                // background
+                fill.setFill(Color.WHITE);
+                fill.clearRect(0, 0, WIDTH, HEIGHT);
+                // snake
+                fill.setFill(Color.PINK);
+                for (int i = 0; i < snake.getSnake().size(); i++) {
+                    fill.fillRect(snake.getSnake().get(i).getX(), snake.getSnake().get(i).getY(), 10, 10);
+                }
+                // food
+                fill.setFill(Color.GREENYELLOW);
+                fill.fillOval(snake.getFood().getX(), snake.getFood().getY(), 10, 10);
+                
+                snake.move(direction);
+                
+                if(snake.dead()) {
+                    stop();
+                }
+                
+                prevTime = currentNanoTime;
             }
         }.start();
         

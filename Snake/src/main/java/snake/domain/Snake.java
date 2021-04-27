@@ -1,43 +1,88 @@
 package snake.domain;
 
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import javafx.geometry.Point2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Snake {
     
-    private ArrayList<Rectangle> snake;
-    private Point2D movement;
+    private ArrayList<Point> snake;
+    private Point food;
+    private Point head;
+    private int width;
+    private int height;
+    private Random rnd;
     
     public Snake(int x, int y) {
-        this.snake = new ArrayList<>();
+        snake = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            this.snake.add(new Rectangle(10, 10));
-            this.snake.get(i).setTranslateX(x + i * 10);
-            this.snake.get(i).setTranslateY(y);
+            snake.add(new Point(x/2 + i * 10, y/2));
         }
-        this.movement = new Point2D(0.1, 0);
+        head = snake.get(0);
+        width = x;
+        height = y;
+        rnd = new Random();
+        food = new Point(rnd.nextInt(width/10)*10, rnd.nextInt(height/10)*10);
     }
     
-    public boolean eat(Food food) {
-        Shape eat = Shape.intersect(this.snake.get(0), food.getFood());
-        return eat.getBoundsInLocal().getWidth() != -1;
-    }
-    
-    public ArrayList<Rectangle> getSnake() {
-        return this.snake;
-    }
-    
-    public void move() {
-        for (Rectangle r: this.snake) {
-            r.setTranslateX(r.getTranslateX() + this.movement.getX());
-            r.setTranslateY(r.getTranslateY() + this.movement.getY());
+    public boolean eat(Point newHead) {
+        if(newHead.getX() == food.getX() && newHead.getY() == food.getY()) {
+            food = new Point(rnd.nextInt(width/10)*10, rnd.nextInt(height/10)*10);
+            return true;
         }
-        
+        return false;
     }
     
-    public void turn() {
-        
+    public ArrayList<Point> getSnake() {
+        return snake;
+    }
+    
+    public Point getFood() {
+        return food;
+    }
+    
+    public void move(int direction) {
+        ArrayList<Point> newSnake = new ArrayList<>();
+        head = snake.get(0);
+        int x = head.getX();
+        int y = head.getY();
+        switch (direction) {
+            case 0:
+                x = head.getX() - 10;
+                break;
+            case 1:
+                y = head.getY() - 10;
+                break;
+            case 2:
+                x = head.getX() + 10;
+                break;
+            case 3:
+                y = head.getY() + 10;
+                break;
+            default:
+                break;
+        }
+        newSnake.add(new Point(x, y));
+        int size = snake.size()-1;
+        if(eat(newSnake.get(0))) {
+            size = snake.size();
+        }
+        for (int i = 0; i < size; i++) {
+            Point newBlock = snake.get(i);
+            newSnake.add(newBlock);
+        }
+        snake = newSnake;
+    }
+    
+    public boolean dead() {
+        head = snake.get(0);
+        if (head.getX() < 0 || head.getY() < 0 || head.getX() > width || head.getY() > height) {
+            return true;
+        }
+        for (int i = 1; i < snake.size(); i++) {
+            if(head.getX() == snake.get(i).getX() && head.getY() == snake.get(i).getY()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

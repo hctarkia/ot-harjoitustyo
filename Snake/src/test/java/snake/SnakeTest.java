@@ -14,11 +14,16 @@ public class SnakeTest {
     
     @Before
     public void setUp() {
-        snake = new Snake(0, 0);
+        snake = new Snake(10, 10);
     }
     
     @Test
     public void createsCorrectSizedSnake() {
         assertTrue(snake.getSnake().size() == 3);
+    }
+    
+    @Test
+    public void createsFood() {
+        assertFalse(snake.getFood() == null);
     }
 }
