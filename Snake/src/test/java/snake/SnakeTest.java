@@ -24,20 +24,28 @@ public class SnakeTest {
     }
     
     @Test
-    public void createsFood() {
-        assertFalse(snake.getFood() == null);
-    }
-    
-    @Test
     public void eatingReturnsTrue() {
-        assertTrue(snake.eat(snake.getFood()));
+        assertTrue(snake.eat(new Point(5, 5), new Point(5, 5)));
     }
     
     @Test
-    public void eatingCreatesNewFood() {
-        Point oldFood = snake.getFood();
-        snake.eat(snake.getFood());
-        assertFalse(snake.getFood() == oldFood);
+    public void notEatingReturnsFalse() {
+        assertFalse(snake.eat(new Point(5, 5), new Point(5, 6)));
     }
     
+    @Test
+    public void eatingGrowsSnake() {
+        snake.move(0, snake.eat(new Point(5, 5), new Point(5, 5)));
+        assertTrue(snake.getSnake().size() == 4);
+    }
+    
+    @Test
+    public void diesWhenOutOfTheField() {
+        snake.move(0, false);
+        snake.move(0, false);
+        snake.move(0, false);
+        snake.move(0, false);
+        snake.move(0, false);
+        assertTrue(snake.dead());
+    }
 }

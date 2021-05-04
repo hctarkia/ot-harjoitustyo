@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import java.util.concurrent.atomic.AtomicInteger;
 import snake.domain.Snake;
+import snake.domain.Food;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
@@ -69,6 +70,7 @@ public class SnakeUi extends Application {
         gpLayout.setCenter(field);
         
         Snake snake = new Snake(WIDTH, HEIGHT);
+        Food food = new Food(WIDTH, HEIGHT, snake.getSnake());
         direction = 0;
         
         Scene scene = new Scene(gpLayout);
@@ -119,15 +121,16 @@ public class SnakeUi extends Application {
                 }
                 // food
                 fill.setFill(Color.GREENYELLOW);
-                fill.fillOval(snake.getFood().getX(), snake.getFood().getY(), 10, 10);
+                fill.fillOval(food.getFood().getX(), food.getFood().getY(), 10, 10);
                 
                 if(!keys.isEmpty()) {
                     direction = keys.poll();
                 }
-                boolean eat = snake.eat(snake.getSnake().get(0));
+                boolean eat = snake.eat(snake.getSnake().get(0), food.getFood());
                 snake.move(direction, eat);
-                if(eat) {
+                if (eat) {
                     text.setText("Pisteet: " + score.addAndGet(10));
+                    food.eaten(snake.getSnake());
                 }
                 
                 

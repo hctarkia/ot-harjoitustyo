@@ -6,7 +6,6 @@ import java.util.Random;
 public class Snake {
     
     private ArrayList<Point> snake;
-    private Point food;
     private Point head;
     private int width;
     private int height;
@@ -20,25 +19,10 @@ public class Snake {
         head = snake.get(0);
         width = x;
         height = y;
-        rnd = new Random();
-        food = new Point(rnd.nextInt(width / 10) * 10, rnd.nextInt(height / 10) * 10);
     }
     
-    public boolean eat(Point mouth) {
+    public boolean eat(Point mouth, Point food) {
         if (mouth.equals(food)) {
-            while (true) {
-                food = new Point(rnd.nextInt(width / 10) * 10, rnd.nextInt(height / 10) * 10);
-                boolean f = true;
-                for (Point s: snake) {
-                    if (s.equals(food)) {
-                        f = false;
-                        break;
-                    }
-                }
-                if (f) {
-                    break;
-                }
-            }
             return true;
         }
         return false;
@@ -46,10 +30,6 @@ public class Snake {
     
     public ArrayList<Point> getSnake() {
         return snake;
-    }
-    
-    public Point getFood() {
-        return food;
     }
     
     public void move(int direction, boolean eat) {
@@ -90,7 +70,7 @@ public class Snake {
             return true;
         }
         for (int i = 1; i < snake.size(); i++) {
-            if(head.equals(snake.get(i))) {
+            if (head.equals(snake.get(i))) {
                 return true;
             }
         }

@@ -13,7 +13,7 @@ public class PointTest {
     private Point point;
     
     @Before
-    public void setup() {
+    public void setUp() {
         point = new Point(15, 10);
     }
     
@@ -25,5 +25,10 @@ public class PointTest {
     @Test
     public void returnsCorrectY() {
         assertEquals(point.getY(), 10);
+    }
+    
+    @Test
+    public void equalsWorks() {
+        assertEquals(point, new Point(15, 10));
     }
 }
