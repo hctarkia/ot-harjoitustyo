@@ -11,5 +11,6 @@
 | 27.4. | 3 | mato liikkuu, matoa voi ohjata, mato voi kuolla ja syödä |
 | 27.4. | 2 | lisää testejä, jar-tiedosto ja README.md:n päivitys |
 | 4.5. | 3 | korjattu bugi madon liikkeessä, taustaväri muutettu, syömisestä saa pisteitä ja pieniä parannuksia luokkiin |
+| 4.5. | 3 | lisää testejä, luokka food erotettu luokasta snake, alustava käyttöohje |
 
-Aikaa käytetty yhteensä 25 tuntia.
+Aikaa käytetty yhteensä 28 tuntia.
