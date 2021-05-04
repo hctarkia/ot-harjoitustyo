@@ -4,6 +4,8 @@ Sovellus on matopeli, jossa pelaaja liikuttaa matoa nuolinäppäimillä tavoitte
 
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Arkkitehtuuri](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md) (tekemättä)
