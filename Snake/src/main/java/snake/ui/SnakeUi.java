@@ -17,6 +17,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import java.util.ArrayDeque;
 
 public class SnakeUi extends Application {
     
@@ -61,37 +62,39 @@ public class SnakeUi extends Application {
         Canvas field = new Canvas(WIDTH, HEIGHT);
         Group root = new Group();
         root.getChildren().add(field);
+        AtomicInteger score = new AtomicInteger();
         Text text = new Text("Pisteet: 0");
         text.setFont(new Font(20));
         gpLayout.setTop(text);
         gpLayout.setCenter(field);
-        AtomicInteger score = new AtomicInteger();
         
         Snake snake = new Snake(WIDTH, HEIGHT);
+        direction = 0;
         
         Scene scene = new Scene(gpLayout);
         
         GraphicsContext fill = field.getGraphicsContext2D();
         
+        ArrayDeque<Integer> keys = new ArrayDeque<>();
         scene.setOnKeyPressed((event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 if (direction != 2) {
-                    direction = 0;
+                    keys.addLast(0);
                 }
             }
             if (event.getCode() == KeyCode.UP) {
                 if (direction != 3) {
-                    direction = 1;
+                    keys.addLast(1);
                 }
             }
             if (event.getCode() == KeyCode.RIGHT) {
                 if (direction != 0) {
-                    direction = 2;
+                    keys.addLast(2);
                 }
             }
             if (event.getCode() == KeyCode.DOWN) {
                 if (direction != 1) {
-                    direction = 3;
+                    keys.addLast(3);
                 }
             }
         }));
@@ -107,8 +110,8 @@ public class SnakeUi extends Application {
                     return;
                 }
                 // background
-                fill.setFill(Color.WHITE);
-                fill.clearRect(0, 0, WIDTH, HEIGHT);
+                fill.setFill(Color.BLACK);
+                fill.fillRect(0, 0, WIDTH, HEIGHT);
                 // snake
                 fill.setFill(Color.PINK);
                 for (int i = 0; i < snake.getSnake().size(); i++) {
@@ -118,10 +121,30 @@ public class SnakeUi extends Application {
                 fill.setFill(Color.GREENYELLOW);
                 fill.fillOval(snake.getFood().getX(), snake.getFood().getY(), 10, 10);
                 
-                snake.move(direction);
+                if(!keys.isEmpty()) {
+                    direction = keys.poll();
+                }
+                boolean eat = snake.eat(snake.getSnake().get(0));
+                snake.move(direction, eat);
+                if(eat) {
+                    text.setText("Pisteet: " + score.addAndGet(10));
+                }
+                
                 
                 if(snake.dead()) {
                     stop();
+                    VBox dead = new VBox();
+                    dead.setAlignment(Pos.CENTER);
+                    Text end = new Text("Peli päättyi");
+                    end.setFont(new Font(30));
+                    Button menu = new Button("Valikkoon");
+                    menu.setFont(new Font(30));
+                    menu.setOnAction((event -> {
+                        stage.setScene(front);
+                    }));
+                    dead.getChildren().addAll(end, menu);
+                    dead.setSpacing(30);
+                    gpLayout.setCenter(dead);
                 }
                 
                 prevTime = currentNanoTime;

@@ -17,6 +17,7 @@ Pelin päätyttyä aukeaa näkymä, jossa näkee oman tuloksensa ja voi palata p
 
 - käyttäjä ohjaa matoa nuolinäppäimillä (tehty)
 - kun madolla syödään ruokaa, mato kasvaa pituutta (tehty)
+- kun madolla syödään ruokaa, pisteet kasvaa (tehty)
 - kun mato törmää seinään tai itseensä, peli päättyy (tehty)
 - käyttäjä voi tallentaa tuloksensa ennätyslistaan
 - käyttäjä voi tarkastella pelissä tehtyjä ennätyksiä

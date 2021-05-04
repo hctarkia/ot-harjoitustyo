@@ -10,5 +10,6 @@
 | 26.4. | 3 | uusi lähestymistapa pelin luontiin eli kenttä vaihtui panesta canvasiin |
 | 27.4. | 3 | mato liikkuu, matoa voi ohjata, mato voi kuolla ja syödä |
 | 27.4. | 2 | lisää testejä, jar-tiedosto ja README.md:n päivitys |
+| 4.5. | 3 | korjattu bugi madon liikkeessä, taustaväri muutettu, syömisestä saa pisteitä ja pieniä parannuksia luokkiin |
 
-Aikaa käytetty yhteensä 22 tuntia.
+Aikaa käytetty yhteensä 25 tuntia.

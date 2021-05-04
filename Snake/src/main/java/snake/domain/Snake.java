@@ -24,9 +24,21 @@ public class Snake {
         food = new Point(rnd.nextInt(width / 10) * 10, rnd.nextInt(height / 10) * 10);
     }
     
-    public boolean eat(Point newHead) {
-        if (newHead.getX() == food.getX() && newHead.getY() == food.getY()) {
-            food = new Point(rnd.nextInt(width / 10) * 10, rnd.nextInt(height / 10) * 10);
+    public boolean eat(Point mouth) {
+        if (mouth.equals(food)) {
+            while (true) {
+                food = new Point(rnd.nextInt(width / 10) * 10, rnd.nextInt(height / 10) * 10);
+                boolean f = true;
+                for (Point s: snake) {
+                    if (s.equals(food)) {
+                        f = false;
+                        break;
+                    }
+                }
+                if (f) {
+                    break;
+                }
+            }
             return true;
         }
         return false;
@@ -40,7 +52,7 @@ public class Snake {
         return food;
     }
     
-    public void move(int direction) {
+    public void move(int direction, boolean eat) {
         ArrayList<Point> newSnake = new ArrayList<>();
         head = snake.get(0);
         int x = head.getX();
@@ -63,12 +75,11 @@ public class Snake {
         }
         newSnake.add(new Point(x, y));
         int size = snake.size() - 1;
-        if (eat(newSnake.get(0))) {
+        if (eat) {
             size = snake.size();
         }
         for (int i = 0; i < size; i++) {
-            Point newBlock = snake.get(i);
-            newSnake.add(newBlock);
+            newSnake.add(snake.get(i));
         }
         snake = newSnake;
     }
@@ -79,7 +90,7 @@ public class Snake {
             return true;
         }
         for (int i = 1; i < snake.size(); i++) {
-            if (head.getX() == snake.get(i).getX() && head.getY() == snake.get(i).getY()) {
+            if(head.equals(snake.get(i))) {
                 return true;
             }
         }
