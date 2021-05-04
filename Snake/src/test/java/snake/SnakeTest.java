@@ -40,12 +40,42 @@ public class SnakeTest {
     }
     
     @Test
-    public void diesWhenOutOfTheField() {
+    public void diesWhenOutOfTheFieldLeft() {
         snake.move(0, false);
         snake.move(0, false);
         snake.move(0, false);
         snake.move(0, false);
         snake.move(0, false);
+        assertTrue(snake.dead());
+    }
+    
+    @Test
+    public void diesWhenOutOfTheFieldRight() {
+        snake.move(2, false);
+        snake.move(2, false);
+        snake.move(2, false);
+        snake.move(2, false);
+        snake.move(2, false);
+        assertTrue(snake.dead());
+    }
+    
+    @Test
+    public void diesWhenOutOfTheFieldUp() {
+        snake.move(1, false);
+        snake.move(1, false);
+        snake.move(1, false);
+        snake.move(1, false);
+        snake.move(1, false);
+        assertTrue(snake.dead());
+    }
+    
+    @Test
+    public void diesWhenOutOfTheFieldDown() {
+        snake.move(3, false);
+        snake.move(3, false);
+        snake.move(3, false);
+        snake.move(3, false);
+        snake.move(3, false);
         assertTrue(snake.dead());
     }
 }

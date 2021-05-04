@@ -28,7 +28,12 @@ public class PointTest {
     }
     
     @Test
-    public void equalsWorks() {
-        assertEquals(point, new Point(15, 10));
+    public void equalsReturnsTrueWhenSameXAndY() {
+        assertTrue(point.equals(new Point(15, 10)));
+    }
+    
+    @Test
+    public void equalsReturnsFalseWhenDifferentXAndY() {
+        assertFalse(point.equals(new Point(5, 5)));
     }
 }
