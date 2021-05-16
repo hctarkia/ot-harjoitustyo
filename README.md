@@ -8,7 +8,9 @@ Sovellus on matopeli, jossa pelaaja liikuttaa matoa nuolinäppäimillä tavoitte
 
 [Vaatimusmäärittely](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[Arkkitehtuuri](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md) (tekemättä)
+[Arkkitehtuuri](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Testaus](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
 
 [Tuntikirjanpito](https://github.com/hctarkia/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
@@ -17,6 +19,8 @@ Sovellus on matopeli, jossa pelaaja liikuttaa matoa nuolinäppäimillä tavoitte
 [Viikko 5](https://github.com/hctarkia/ot-harjoitustyo/releases/tag/viikko5)
 
 [Viikko 6](https://github.com/hctarkia/ot-harjoitustyo/releases/tag/viikko6)
+
+[Loppupalautus](https://github.com/hctarkia/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Komentorivitoiminnot
 

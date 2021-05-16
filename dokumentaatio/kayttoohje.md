@@ -1,7 +1,8 @@
 # Käyttöohje
 
-
 ## Ohjelman käynnistäminen
+
+Ohjelma tarvitsee tiedoston config.properties juurikansioon, että tietokantaan voidaan tallentaa tuloksia.
 
 Ohjelma käynnistetään komennolla:
 

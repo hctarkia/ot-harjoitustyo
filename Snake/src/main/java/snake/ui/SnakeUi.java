@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.ArrayDeque;
 import java.util.Properties;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -51,9 +52,13 @@ public class SnakeUi extends Application {
     @Override
     public void init() throws Exception {
         Properties properties = new Properties();
-        properties.load(new FileInputStream("config.properties"));
-        String highscore = properties.getProperty("highscores");
-        highscores = new Highscores(highscore);
+        try {
+            properties.load(new FileInputStream("config.properties"));
+            String highscore = properties.getProperty("highscores");
+            highscores = new Highscores(highscore);
+        } catch (FileNotFoundException e) {
+            System.out.println("Virhe: tarvitset tiedoston config.properties juurikansioosi " + e.getMessage());
+        }
     }
     
     /**
@@ -252,13 +257,15 @@ public class SnakeUi extends Application {
         HBox namesAndScores = new HBox();
         namesAndScores.setAlignment(Pos.CENTER);
         namesAndScores.setSpacing(100);
-        for (Score score: highscores.list()) {
-            Text name = new Text(score.getName());
-            name.setFont(new Font(20));
-            names.getChildren().add(name);
-            Text points = new Text(Integer.toString(score.getPoints()));
-            points.setFont(new Font(20));
-            scores.getChildren().add(points);
+        if (!highscores.list().isEmpty()) {
+            for (Score score: highscores.list()) {
+                Text name = new Text(score.getName());
+                name.setFont(new Font(20));
+                names.getChildren().add(name);
+                Text points = new Text(Integer.toString(score.getPoints()));
+                points.setFont(new Font(20));
+                scores.getChildren().add(points);
+            }
         }
         namesAndScores.getChildren().addAll(names, scores);
         Button menu = new Button("Takaisin valikkoon");
