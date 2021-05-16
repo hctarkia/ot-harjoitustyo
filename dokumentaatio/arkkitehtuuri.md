@@ -4,7 +4,7 @@
 
 Sovellus on toteutettu kolmitasoisena arkkitehtuurina.
 
-<img src="">
+<img src="https://github.com/hctarkia/ot-harjoitustyo/edit/master/dokumentaatio/kuvat/pakkausrakenne.png">
 
 Pakkauksessa snake.ui on käyttöliittymän toteutus luokassa SnakeUi ja se käynnistetään luokasta Main.
 Pakkaus snake.domain sisältää sovelluslogiikan toteutuksen ja pakkaus snake.dao vastaa tietokantaan tallennettavasta tiedosta.
