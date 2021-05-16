@@ -8,6 +8,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import snake.domain.Point;
 
+/**
+ * Testaa luokkaa Point.
+ */
+
 public class PointTest {
     
     private Point point;

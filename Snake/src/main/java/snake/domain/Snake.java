@@ -3,6 +3,10 @@ package snake.domain;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Luokka vastaa madon toteutuksesta.
+ */
+
 public class Snake {
     
     private ArrayList<Point> snake;
@@ -10,6 +14,12 @@ public class Snake {
     private int width;
     private int height;
     private Random rnd;
+    
+    /**
+     * Luo uuden Snake-olion.
+     * @param x Pelikentän leveys.
+     * @param y Pelikentän korkeus.
+     */
     
     public Snake(int x, int y) {
         snake = new ArrayList<>();
@@ -21,6 +31,13 @@ public class Snake {
         height = y;
     }
     
+    /**
+     * Tarkistaa osuuko madon pää ruokaan kentällä.
+     * @param mouth Madon pään sijainti.
+     * @param food Ruoan sijainti.
+     * @return Palauttaa true, jos madon pää osuu ruokaan ja false, jos ei.
+     */
+    
     public boolean eat(Point mouth, Point food) {
         if (mouth.equals(food)) {
             return true;
@@ -28,9 +45,20 @@ public class Snake {
         return false;
     }
     
+    /**
+     * Palauttaa listan madon kehon osien sijainneista, että mato saadaan piirrettyä oikeaan paikkaan.
+     * @return Palauttaa listan madon kehon osien sijainneista.
+     */
+    
     public ArrayList<Point> getSnake() {
         return snake;
     }
+    
+    /**
+     * Liikuttaa matoa johonkin suuntaan ja kasvattaa matoa, jos se syö.
+     * @param direction Suunta, mihin mato liikkuu.
+     * @param eat Syökö mato.
+     */
     
     public void move(int direction, boolean eat) {
         ArrayList<Point> newSnake = new ArrayList<>();
@@ -63,6 +91,11 @@ public class Snake {
         }
         snake = newSnake;
     }
+    
+    /**
+     * Tarkistaa, kuoleeko mato.
+     * @return Palauttaa true, jos kuolee ja false, jos ei kuole.
+     */
     
     public boolean dead() {
         head = snake.get(0);

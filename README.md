@@ -53,3 +53,14 @@ mvn jxr:jxr checkstyle:checkstyle
 ```
 
 Komennon suoritettuasi löydät raportin polusta /target/site/checkstyle.html
+
+### JavaDoc
+
+JavaDocin luominen onnistuu komennolla:
+
+```
+mvn javadoc:javadoc
+```
+
+Komennon suoritettuasi löydät JavaDocin polusta /target/site/apidocs/index.html
+

@@ -9,6 +9,10 @@ import static org.junit.Assert.*;
 import snake.domain.Snake;
 import snake.domain.Point;
 
+/**
+ * Testaa luokkaa Snake.
+ */
+
 public class SnakeTest {
     
     Snake snake;

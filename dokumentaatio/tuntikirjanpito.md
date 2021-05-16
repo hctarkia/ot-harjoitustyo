@@ -15,5 +15,6 @@
 | 13.5. | 1 | highscore luokan aloitus |
 | 14.5. | 3 | highscore luokan jatkaminen ja pelin päättymisen näkymän muokkaus |
 | 15.5. | 5 | highscore luokka toimimaan ja sijoitukset näkyviin peliin |
+| 16.5. | 5 | testit kuntoon, luokkien viimeistely ja javadoc käyttöön |
 
-Aikaa käytetty yhteensä 37 tuntia.
+Aikaa käytetty yhteensä 42 tuntia.

@@ -19,4 +19,8 @@ Matoa ohjataan nuolinäppäimillä tarkoituksena kasvattaa pisteitä syömällä
 
 ## Pelin päätyttyä
 
-Voit palata päävalikkoon napista "Valikkoon".
+Voit kirjata pisteet tietokantaan lisäämällä nimen ja painamalla "Lisää pisteet" tai palata päävalikkoon napista "Valikkoon".
+
+## Ennätyksien tarkastelu
+
+Voit nähdä 10 parasta tulosta, kun painat päävalikosta nappia "Sijoitukset". Näkymästä pääsee takaisin päävalikkoon painamalla nappia "Takaisin valikkoon".

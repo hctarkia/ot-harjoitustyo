@@ -28,6 +28,10 @@ import snake.domain.Food;
 import snake.domain.Score;
 import java.sql.SQLException;
 
+/**
+ * Luokka toteuttaa sovelluksen käyttöliittymän ja pelin visuaalisen toteutuksen.
+ */
+
 public class SnakeUi extends Application {
     private Highscores highscores;
     
@@ -39,6 +43,11 @@ public class SnakeUi extends Application {
         launch(args);
     }
     
+    /**
+     * Metodi hakee tietokannan ja luo pistetilaston.
+     * @throws Exception 
+     */
+    
     @Override
     public void init() throws Exception {
         Properties properties = new Properties();
@@ -46,6 +55,12 @@ public class SnakeUi extends Application {
         String highscore = properties.getProperty("highscores");
         highscores = new Highscores(highscore);
     }
+    
+    /**
+     * Päävalikon toteutus.
+     * @param stage
+     * @throws SQLException 
+     */
     
     @Override
     public void start(Stage stage) throws SQLException {
@@ -86,6 +101,13 @@ public class SnakeUi extends Application {
         stage.setScene(menu);
         stage.show();
     }
+    
+    /**
+     * Pelin pelaaminen.
+     * @param stage Tähän asetetaan Scene-oliot.
+     * @param front Päävalikon Scene-olio.
+     * @throws SQLException 
+     */
     
     public void gameplay(Stage stage, Scene front) throws SQLException {
         BorderPane gpLayout = new BorderPane();
@@ -208,6 +230,13 @@ public class SnakeUi extends Application {
         
         stage.setScene(scene);
     }
+    
+    /**
+     * Metodi toteuttaa sijoitusten näkymän.
+     * @param stage Tähän asetetaan Scene-oliot.
+     * @param front Päävalikon Scene-olio.
+     * @throws SQLException 
+     */
     
     public void showHighscores(Stage stage, Scene front) throws SQLException {
         BorderPane base = new BorderPane();

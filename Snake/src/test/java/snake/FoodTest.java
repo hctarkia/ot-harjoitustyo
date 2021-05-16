@@ -10,6 +10,10 @@ import snake.domain.Food;
 import snake.domain.Point;
 import snake.domain.Snake;
 
+/**
+ * Testaa luokkaa Food.
+ */
+
 public class FoodTest {
     
     Food food;
