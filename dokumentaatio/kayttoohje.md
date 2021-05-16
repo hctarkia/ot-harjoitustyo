@@ -1,5 +1,20 @@
 # Käyttöohje
 
+Lataa tiedosto [Snake-1.0-SNAPSHOT.jar](https://github.com/hctarkia/ot-harjoitustyo/releases/tag/loppupalautus)
+
+## Konfigurointi
+
+Ohjelma tarvitsee käynnistyshakemistoonsa tiedoston "config.properties" toimiakseen oikein.
+
+Lataa tiedosto [config.properties](https://github.com/hctarkia/ot-harjoitustyo/releases/tag/loppupalautus) sovelluksen käynnistyshakemistoon.
+
+Tiedoston sisältö:
+
+```
+highscores=highscores.db
+test=test.db
+```
+
 ## Ohjelman käynnistäminen
 
 Ohjelma tarvitsee tiedoston config.properties juurikansioon, että tietokantaan voidaan tallentaa tuloksia.
