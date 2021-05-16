@@ -12,5 +12,8 @@
 | 27.4. | 2 | lisää testejä, jar-tiedosto ja README.md:n päivitys |
 | 4.5. | 3 | korjattu bugi madon liikkeessä, taustaväri muutettu, syömisestä saa pisteitä ja pieniä parannuksia luokkiin |
 | 4.5. | 3 | lisää testejä, luokka food erotettu luokasta snake, alustava käyttöohje |
+| 13.5. | 1 | highscore luokan aloitus |
+| 14.5. | 3 | highscore luokan jatkaminen ja pelin päättymisen näkymän muokkaus |
+| 15.5. | 5 | highscore luokka toimimaan ja sijoitukset näkyviin peliin |
 
-Aikaa käytetty yhteensä 28 tuntia.
+Aikaa käytetty yhteensä 37 tuntia.

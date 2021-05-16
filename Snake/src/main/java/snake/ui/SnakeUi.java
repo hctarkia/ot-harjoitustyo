@@ -1,5 +1,9 @@
 package snake.ui;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayDeque;
+import java.util.Properties;
+import java.io.FileInputStream;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -9,18 +13,23 @@ import javafx.scene.text.Text;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import java.util.concurrent.atomic.AtomicInteger;
-import snake.domain.Snake;
-import snake.domain.Food;
+import javafx.scene.control.TextField;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import java.util.ArrayDeque;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import snake.dao.Highscores;
+import snake.domain.Snake;
+import snake.domain.Food;
+import snake.domain.Score;
+import java.sql.SQLException;
 
 public class SnakeUi extends Application {
+    private Highscores highscores;
     
     public static int WIDTH = 400;
     public static int HEIGHT = 400;
@@ -31,7 +40,15 @@ public class SnakeUi extends Application {
     }
     
     @Override
-    public void start(Stage stage) {
+    public void init() throws Exception {
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("config.properties"));
+        String highscore = properties.getProperty("highscores");
+        highscores = new Highscores(highscore);
+    }
+    
+    @Override
+    public void start(Stage stage) throws SQLException {
         BorderPane start = new BorderPane();
         VBox buttons = new VBox();
         buttons.setAlignment(Pos.CENTER);
@@ -50,7 +67,19 @@ public class SnakeUi extends Application {
         Scene menu = new Scene(start);
         
         play.setOnAction(event -> {
-            gameplay(stage,menu);
+            try {
+                gameplay(stage, menu); 
+            } catch (SQLException e) {
+                System.out.println("Virhe: " + e.getMessage());
+            }
+        });
+        
+        highscore.setOnAction(event -> {
+            try {
+                showHighscores(stage, menu);
+            } catch (SQLException e) {
+                System.out.println("Virhe: " + e.getMessage());
+            }
         });
         
         stage.setTitle("Matopeli");
@@ -58,7 +87,7 @@ public class SnakeUi extends Application {
         stage.show();
     }
     
-    public void gameplay(Stage stage, Scene front) {
+    public void gameplay(Stage stage, Scene front) throws SQLException {
         BorderPane gpLayout = new BorderPane();
         Canvas field = new Canvas(WIDTH, HEIGHT);
         Group root = new Group();
@@ -140,12 +169,35 @@ public class SnakeUi extends Application {
                     dead.setAlignment(Pos.CENTER);
                     Text end = new Text("Peli päättyi");
                     end.setFont(new Font(30));
+                    HBox addScore = new HBox();
+                    addScore.setAlignment(Pos.CENTER);
+                    Text name = new Text("Nimi (1-10 kirjanta): ");
+                    name.setFont(new Font(20));
+                    TextField input = new TextField();
+                    input.setPrefColumnCount(10);
+                    input.setPrefHeight(20);
+                    addScore.getChildren().addAll(name, input);
+                    Button add = new Button("Lisää pisteet");
+                    add.setFont(new Font(20));
+                    add.setOnAction((event -> {
+                        String playerName = input.getText();
+                        if(playerName.length() > 0 && playerName.length() <= 10) {
+                            try {
+                                highscores.add(playerName, score.intValue());
+                            } catch (SQLException e) {
+                                System.out.println("Virhe: " + e.getMessage());
+                            }
+                            stage.setScene(front);
+                        } else {
+                            name.setText("Anna nimi (1-10 kirjainta)");
+                        }
+                    }));
                     Button menu = new Button("Valikkoon");
-                    menu.setFont(new Font(30));
+                    menu.setFont(new Font(20));
                     menu.setOnAction((event -> {
                         stage.setScene(front);
                     }));
-                    dead.getChildren().addAll(end, menu);
+                    dead.getChildren().addAll(end, addScore, add, menu);
                     dead.setSpacing(30);
                     gpLayout.setCenter(dead);
                 }
@@ -154,6 +206,41 @@ public class SnakeUi extends Application {
             }
         }.start();
         
+        stage.setScene(scene);
+    }
+    
+    public void showHighscores(Stage stage, Scene front) throws SQLException {
+        BorderPane base = new BorderPane();
+        base.setPrefSize(WIDTH, HEIGHT);
+        VBox layout = new VBox();
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(30);
+        Text header = new Text("Sijoitukset");
+        header.setFont(new Font(25));
+        header.setTextAlignment(TextAlignment.CENTER);
+        VBox names = new VBox();
+        VBox scores = new VBox();
+        HBox namesAndScores = new HBox();
+        namesAndScores.setAlignment(Pos.CENTER);
+        namesAndScores.setSpacing(100);
+        for (Score score: highscores.list()) {
+            Text name = new Text(score.getName());
+            name.setFont(new Font(20));
+            names.getChildren().add(name);
+            Text points = new Text(Integer.toString(score.getPoints()));
+            points.setFont(new Font(20));
+            scores.getChildren().add(points);
+        }
+        namesAndScores.getChildren().addAll(names, scores);
+        Button menu = new Button("Takaisin valikkoon");
+        menu.setFont(new Font(20));
+        menu.setAlignment(Pos.CENTER);
+        menu.setOnAction(event -> {
+            stage.setScene(front);
+        });
+        layout.getChildren().addAll(header, namesAndScores, menu);
+        base.setCenter(layout);
+        Scene scene = new Scene(base);
         stage.setScene(scene);
     }
 }

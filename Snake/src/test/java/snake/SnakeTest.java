@@ -78,4 +78,19 @@ public class SnakeTest {
         snake.move(3, false);
         assertTrue(snake.dead());
     }
+    
+    @Test
+    public void diesWhenEatsTail() {
+        snake.move(0, true);
+        snake.move(0, true);
+        snake.move(1, true);
+        snake.move(2, true);
+        snake.move(3, true);
+        assertTrue(snake.dead());
+    }
+    
+    @Test
+    public void snakeIsAlive() {
+        assertFalse(snake.dead());
+    }
 }

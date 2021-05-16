@@ -36,4 +36,9 @@ public class PointTest {
     public void equalsReturnsFalseWhenDifferentXAndY() {
         assertFalse(point.equals(new Point(5, 5)));
     }
+    
+    @Test
+    public void equalsReturnsTrueWhenSameObject() {
+        assertTrue(point.equals(point));
+    }
 }
